@@ -1,3 +1,16 @@
+<html>
+    <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+    <ul>
+        <li><a href="createDB.php">Create DataBase</a></li>
+        <li><a href="fillTables.php">Insert Data</a></li>
+        <li><a href="listHotels.php">List Hotels</a></li>
+        <li><a href="listCazare.php">List Cazare</a></li>
+        <li><a href="operations.php">Opeations</a></li>
+        <li><a href="actualizare.php">Actualizarea Rezervari</a></li>
+    </ul>
 <?php
     $host = '127.0.0.1';  
     $dbname = 'Project';      
@@ -72,3 +85,5 @@
 
     $mysqli->close();
 ?>
+</body>
+</html>

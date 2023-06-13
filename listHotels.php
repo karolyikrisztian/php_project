@@ -9,6 +9,7 @@
         <li><a href="listHotels.php">List Hotels</a></li>
         <li><a href="listCazare.php">List Cazare</a></li>
         <li><a href="operations.php">Opeations</a></li>
+        <li><a href="actualizare.php">Actualizarea Rezervari</a></li>
     </ul>
         <h1>List hoteluri</h1>
         

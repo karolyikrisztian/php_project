@@ -1,8 +1,5 @@
 <?php
-$host = '127.0.0.1';
-$dbname = 'Project';
-$user = 'root';
-$password = '';
+$host = '127.0.0.1'; $dbname = 'Project'; $user = 'root'; $password = '';
 
 $mysqli = new mysqli($host, $user, $password);
 
@@ -44,7 +41,11 @@ if ($reservationsResult) {
     }
 
     $reservationsResult->free();
+
 }
 
+
 $mysqli->close();
+header("Location: ./listCazare.php");
+
 ?>
