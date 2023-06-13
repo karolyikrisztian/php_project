@@ -4,54 +4,53 @@
     </head>
     <body>
     <ul>
-        <li><a href="createDB.php">Create DataBase</a></li>
-        <li><a href="fillTables.php">Insert Data</a></li>
-        <li><a href="listHotels.php">List Hotels</a></li>
-        <li><a href="listCazare.php">List Cazare</a></li>
-        <li><a href="operations.php">Opeations</a></li>
+        <li><a href="createDB.php">relansarea bazei de date</a></li>
+        <li><a href="fillTables.php">inserați datele în mod automat</a></li>
+        <li><a href="listHotels.php">Listare Hotels</a></li>
+        <li><a href="listCazare.php">Listare Cazare</a></li>
+        <li><a href="exemple.php">Exemple</a></li>
         <li><a href="actualizare.php">Actualizarea Rezervari</a></li>
     </ul>
-        <h1>List hoteluri</h1>
-        
+        <h1>Listare hoteluri</h1>
 <?php
-    $host = '127.0.0.1';
-    $dbname = 'Project';
-    $user = 'root';
-    $password = '';
+    $gazda = '127.0.0.1';
+    $nume_baza_date = 'Project';
+    $utilizator = 'root';
+    $parola = '';
 
-    $mysqli = new mysqli($host, $user, $password);
+    $mysqli = new mysqli($gazda, $utilizator, $parola);
 
     if ($mysqli->connect_error) {
-        die("Connection failed: " . $mysqli->connect_error);
+        die("Conexiune eșuată: " . $mysqli->connect_error);
     }
 
-    $mysqli->select_db($dbname);
-    $result = $mysqli->query("SELECT * FROM hoteluri");
+    $mysqli->select_db($nume_baza_date);
+    $rezultat = $mysqli->query("SELECT * FROM hoteluri");
  
-    if ($result) {
-        $hoteluriData = array();
+    if ($rezultat) {
+        $dateHoteluri = array();
 
-        while ($row = $result->fetch_assoc()) {
-            $hoteluriData[] = $row;
+        while ($rand = $rezultat->fetch_assoc()) {
+            $dateHoteluri[] = $rand;
         }
 
-        $result->free();
+        $rezultat->free();
     } 
     else {
         echo "Eroare: " . $mysqli->error;
     }
     echo '<table>';
-    echo '<tr> <th >Nume</th> <th>Stele</th> <th>Tara</th> <th >Oras</th> <th >Adresa</th> <th >Stergere</th></tr>';
-    foreach ($hoteluriData as $row) {
+    echo '<tr> <th >Nume</th> <th>Stele</th> <th>Tara</th> <th >Oras</th> <th >Adresa</th> <th >Ștergere</th></tr>';
+    foreach ($dateHoteluri as $rand) {
         echo "<tr>";
         echo "<form method='POST' action='deleteHotel.php'>";
-        echo "<input type='hidden' name='id' value='" . $row['id'] . "'>";
-        echo "<td>" . $row['nume'] . "</td>";
-        echo "<td class='stele'>" . $row['stele'] . "</td>";
-        echo "<td>" . $row['tara'] . "</td>";
-        echo "<td>" . $row['oras'] . "</td>";
-        echo "<td>" . $row['adresa'] . "</td>";
-        echo "<td><button class='btn' type='submit'>Stergere</button></td>";
+        echo "<input type='hidden' name='id' value='" . $rand['id'] . "'>";
+        echo "<td>" . $rand['nume'] . "</td>";
+        echo "<td class='stele'>" . $rand['stele'] . "</td>";
+        echo "<td>" . $rand['tara'] . "</td>";
+        echo "<td>" . $rand['oras'] . "</td>";
+        echo "<td>" . $rand['adresa'] . "</td>";
+        echo "<td><button class='btn' type='submit'>Ștergere</button></td>";
         echo "</form>";
         echo "</tr>";
     }
@@ -71,12 +70,10 @@
         <option value="4">4</option>
         <option value="5">5</option>
     </select>
-    <input type="text" placeholder="Tara" name="tara">
-    <input type="text" placeholder="Oras" name="oras">
-    <input type="text" placeholder="Adresa" name="adresa">
-    <input class="btn" type="submit" value="Add"> 
+    <input type="text" requried="required" placeholder="Tara" name="tara">
+    <input type="text" requried="required" placeholder="Oras" name="oras">
+    <input type="text" requried="required" placeholder="Adresa" name="adresa">
+    <input class="btn"  type="submit" value="Adaugă"> 
 </form>
-
-
     </body>
 </html>

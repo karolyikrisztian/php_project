@@ -4,14 +4,14 @@
     </head>
     <body>
     <ul>
-        <li><a href="createDB.php">Create DataBase</a></li>
-        <li><a href="fillTables.php">Insert Data</a></li>
-        <li><a href="listHotels.php">List Hotels</a></li>
-        <li><a href="listCazare.php">List Cazare</a></li>
-        <li><a href="operations.php">Opeations</a></li>
+        <li><a href="createDB.php">relansarea bazei de date</a></li>
+        <li><a href="fillTables.php">inserați datele în mod automat</a></li>
+        <li><a href="listHotels.php">Listare Hotels</a></li>
+        <li><a href="listCazare.php">Listare Cazare</a></li>
+        <li><a href="exemple.php">Exemple</a></li>
         <li><a href="actualizare.php">Actualizarea Rezervari</a></li>
     </ul>
-        <h1>List Cazare</h1>
+        <h1>Listare Cazare</h1>
         
 <?php
     $host = '127.0.0.1';
@@ -47,7 +47,7 @@
         echo "<tr>";
         echo "<form method='POST' action='deleteCazare.php'>";
         echo "<input type='hidden' name='id' value='" . $row['id'] . "'>";
-        echo "<td>" . $row['status'] . "</td>";
+        echo "<td>" . strtolower($row['status']) . "</td>";
         echo "<td>" . $row['nume'] . "</td>";
         echo "<td '>" .$stele . "</td>";
         echo "<td>" . $row['numarul_patelor'] . "</td>";

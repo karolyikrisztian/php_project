@@ -34,6 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $ins->close();
     $mysqli->close();
 } else {
-    die('Wrong method');
+    die(' method grasit');
 }
 ?>

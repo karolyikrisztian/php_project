@@ -1,51 +1,48 @@
 <?php
-$host = '127.0.0.1'; $dbname = 'Project'; $user = 'root'; $password = '';
+$gazda = '127.0.0.1'; $nume_baza_date = 'Project'; $utilizator = 'root'; $parola = '';
 
-$mysqli = new mysqli($host, $user, $password);
+$mysqli = new mysqli($gazda, $utilizator, $parola);
 
 if ($mysqli->connect_error) {
     die("Eroare de conexiune: " . $mysqli->connect_error);
 }
 
-$mysqli->select_db($dbname);
+$mysqli->select_db($nume_baza_date);
 
-// Get the current date
-$currentDate = date('Y-m-d');
+// Obține data curentă
+$dataCurenta = date('Y-m-d');
 
-// Get all reservations
-$reservationsQuery = "
+// Obține toate rezervările
+$queryRezervari = "
     SELECT r.camera_id, r.data_check_in, r.data_check_out
     FROM Rezervari r
     INNER JOIN Camere c ON r.camera_id = c.id
 ";
-$reservationsResult = $mysqli->query($reservationsQuery);
+$rezultatRezervari = $mysqli->query($queryRezervari);
 
-if ($reservationsResult) {
-    while ($reservation = $reservationsResult->fetch_assoc()) {
-        $roomId = $reservation['camera_id'];
-        $checkInDate = $reservation['data_check_in'];
-        $checkOutDate = $reservation['data_check_out'];
+if ($rezultatRezervari) {
+    while ($rezervare = $rezultatRezervari->fetch_assoc()) {
+        $idCamera = $rezervare['camera_id'];
+        $dataCheckIn = $rezervare['data_check_in'];
+        $dataCheckOut = $rezervare['data_check_out'];
 
-        // Determine the status based on the dates
-        if ($currentDate >= $checkInDate && $currentDate <= $checkOutDate) {
-            $status = 'occupat';
+        // Determină starea bazată pe date
+        if ($dataCurenta >= $dataCheckIn && $dataCurenta <= $dataCheckOut) {
+            $stare = 'ocupat';
         } else {
-            $status = 'disponibil';
+            $stare = 'disponibil';
         }
 
-        // Update the room status in the database
-        $updateQuery = "UPDATE Camere SET status = ? WHERE id = ?";
-        $updateStatement = $mysqli->prepare($updateQuery);
-        $updateStatement->bind_param("si", $status, $roomId);
-        $updateStatement->execute();
+        // Actualizează starea camerei în baza de date
+        $interogareActualizare = "UPDATE Camere SET status = ? WHERE id = ?";
+        $declaratieActualizare = $mysqli->prepare($interogareActualizare);
+        $declaratieActualizare->bind_param("si", $stare, $idCamera);
+        $declaratieActualizare->execute();
     }
 
-    $reservationsResult->free();
-
+    $rezultatRezervari->free();
 }
-
 
 $mysqli->close();
 header("Location: ./listCazare.php");
-
 ?>
