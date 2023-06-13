@@ -1,0 +1,55 @@
+table{
+    padding: 0;
+    border: none;
+    border-collapse: collapse;
+    margin: auto;
+    max-height: 400px;
+    overflow: scroll;
+}
+h1{
+    text-align: center;
+    
+}
+
+tr:nth-child(even){
+    background-color: #adadad;
+    color: white;
+    
+}
+th{background-color: #333; color: white}
+tr{
+    line-height: 160%;
+    font-size: 1.2rem;
+}
+
+td, th{
+    width: 200px;
+    text-align: center;
+}
+
+form{
+    margin-top: 50px;
+    text-align: center;
+}
+input{
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+    line-height: 1.5rem;
+}
+select{width: 75%; line-height: 1.5rem;}
+
+.btn{
+    border-radius: 10px;
+    background-color: crimson;
+
+}
+
+ul{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    column-gap: 10px;
+}
+
+li{display: inline-block; color: red;}
